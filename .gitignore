@@ -1,6 +1,5 @@
-
 myenv/
+venv/
 .env
-chroma_db/
-uploaded_repos/
 __pycache__/
+*.pyc
