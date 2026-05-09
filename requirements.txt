@@ -33,3 +33,4 @@ tqdm
 
 faiss-cpu
 huggingface-hub
+radon
