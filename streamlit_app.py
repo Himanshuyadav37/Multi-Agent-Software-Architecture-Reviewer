@@ -35,77 +35,248 @@ st.set_page_config(
 st.markdown("""
 <style>
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
-html, body, [class*="css"] {
-    font-family: 'Inter', sans-serif;
+:root{
+    --bg:#050816;
+    --card:#0B1220;
+    --card2:#111827;
+    --border:rgba(255,255,255,.08);
+    --text:#F8FAFC;
+    --muted:#94A3B8;
+    --blue:#3B82F6;
+    --purple:#8B5CF6;
+    --cyan:#06B6D4;
+    --green:#22C55E;
+}
+
+html, body, [class*="css"]{
+    font-family:'Inter',sans-serif;
 }
 
 .stApp{
-background:linear-gradient(135deg,#020617,#081126,#0f172a);
-color:white;
+    background:
+    radial-gradient(circle at top left,#1e3a8a20,transparent 35%),
+    radial-gradient(circle at top right,#7c3aed20,transparent 35%),
+    linear-gradient(180deg,#020617,#0f172a);
+    color:var(--text);
+}
+
+.block-container{
+    padding-top:2rem;
+    max-width:1400px;
+}
+
+section[data-testid="stSidebar"]{
+    background:rgba(7,12,25,.95);
+    border-right:1px solid rgba(255,255,255,.05);
 }
 
 .main-title{
-font-size:58px;
-font-weight:800;
-background:linear-gradient(to right,#38bdf8,#818cf8,#c084fc);
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
+    font-size:72px;
+    font-weight:900;
+    line-height:1;
+    letter-spacing:-2px;
+    margin-bottom:15px;
+
+    background:linear-gradient(
+        90deg,
+        #60a5fa,
+        #818cf8,
+        #c084fc,
+        #22d3ee
+    );
+
+    background-size:300% 300%;
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+
+    animation:gradientMove 8s ease infinite;
+}
+
+@keyframes gradientMove{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
 }
 
 .subtitle{
-color:#94a3b8;
-font-size:18px;
-line-height:1.8;
-margin-bottom:25px;
+    font-size:18px;
+    color:#94a3b8;
+    line-height:1.8;
+    max-width:900px;
+    margin-bottom:30px;
 }
 
 .card{
-background:rgba(15,23,42,0.75);
-border:1px solid rgba(255,255,255,0.06);
-border-radius:22px;
-padding:22px;
+    background:rgba(15,23,42,.75);
+    backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.06);
+
+    border-radius:24px;
+
+    padding:24px;
+
+    transition:.3s ease;
+
+    box-shadow:
+    0 8px 40px rgba(0,0,0,.25);
+}
+
+.card:hover{
+    transform:translateY(-6px);
+    border-color:#3b82f6;
+    box-shadow:
+    0 15px 60px rgba(59,130,246,.15);
 }
 
 .metric-title{
-color:#94a3b8;
-font-size:12px;
-letter-spacing:1px;
-font-weight:600;
+    color:#94a3b8;
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:2px;
+    text-transform:uppercase;
 }
 
 .metric-value{
-font-size:30px;
-font-weight:700;
-margin-top:10px;
+    font-size:38px;
+    font-weight:800;
+    margin-top:12px;
 }
 
 .workflow{
-background:rgba(15,23,42,0.7);
-padding:14px 18px;
-border-radius:14px;
-margin-bottom:10px;
-border:1px solid rgba(255,255,255,0.05);
+    background:rgba(15,23,42,.8);
+
+    border:1px solid rgba(255,255,255,.05);
+
+    border-left:4px solid #3b82f6;
+
+    padding:18px;
+
+    border-radius:18px;
+
+    margin-bottom:12px;
+
+    transition:.25s;
+}
+
+.workflow:hover{
+    transform:translateX(4px);
 }
 
 .rec-card{
-background:rgba(30,41,59,0.6);
-padding:14px 18px;
-border-radius:14px;
-margin-bottom:12px;
-border:1px solid rgba(255,255,255,0.05);
+
+    background:
+    linear-gradient(
+        135deg,
+        rgba(59,130,246,.12),
+        rgba(139,92,246,.12)
+    );
+
+    border:1px solid rgba(255,255,255,.06);
+
+    border-radius:20px;
+
+    padding:20px;
+
+    margin-bottom:15px;
+
+    transition:.25s;
+}
+
+.rec-card:hover{
+    transform:translateY(-4px);
+}
+
+.stTextInput input,
+.stTextArea textarea{
+
+    background:#0B1220 !important;
+
+    border:1px solid rgba(255,255,255,.08) !important;
+
+    border-radius:16px !important;
+
+    color:white !important;
+
+    padding:14px !important;
+}
+
+.stTextInput input:focus,
+.stTextArea textarea:focus{
+
+    border:1px solid #3B82F6 !important;
+
+    box-shadow:
+    0 0 0 3px rgba(59,130,246,.15) !important;
 }
 
 .stButton > button{
-background:linear-gradient(90deg,#2563eb,#7c3aed);
-color:white;
-border:none;
-border-radius:14px;
-padding:14px 22px;
-font-size:16px;
-font-weight:600;
-width:100%;
+
+    background:
+    linear-gradient(
+        135deg,
+        #2563eb,
+        #7c3aed
+    );
+
+    color:white;
+
+    border:none;
+
+    border-radius:18px;
+
+    height:58px;
+
+    font-size:16px;
+
+    font-weight:700;
+
+    width:100%;
+
+    transition:.3s;
+}
+
+.stButton > button:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:
+    0 10px 40px rgba(99,102,241,.35);
+}
+
+hr{
+    border:none;
+    height:1px;
+    background:
+    linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.15),
+        transparent
+    );
+}
+
+[data-testid="stMetric"]{
+    background:rgba(15,23,42,.7);
+    padding:20px;
+    border-radius:18px;
+}
+
+.stExpander{
+    border-radius:18px !important;
+    overflow:hidden;
+}
+
+::-webkit-scrollbar{
+    width:10px;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#334155;
+    border-radius:20px;
 }
 
 </style>
@@ -142,7 +313,28 @@ with st.sidebar:
 # HEADER
 # ============================================================
 
-st.markdown('<div class="main-title">Repository Architecture Reviewer</div>', unsafe_allow_html=True)
+st.markdown("""
+<div class="card" style="
+padding:40px;
+margin-bottom:25px;
+background:
+linear-gradient(
+135deg,
+rgba(37,99,235,.15),
+rgba(124,58,237,.15)
+);
+">
+<div class="main-title">
+Repository Intelligence Platform
+</div>
+
+<div class="subtitle">
+Enterprise-grade AI architecture auditing powered by
+LangGraph, Multi-Agent Systems, AST Analysis,
+Retrieval-Augmented Generation and Repository Intelligence.
+</div>
+</div>
+""", unsafe_allow_html=True)
 
 st.markdown(
     '<div class="subtitle">AI-powered repository intelligence using LangGraph, RAG, AST analysis, and multi-agent orchestration.</div>',
